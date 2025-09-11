@@ -1,0 +1,11 @@
+.menuItem {
+  font-size: 17px;
+  text-transform: capitalize;
+  color: var(--color-wite);
+  transition: var(--transition);
+
+  &.active,
+  &:hover {
+    opacity: 0.8;
+  }
+}
