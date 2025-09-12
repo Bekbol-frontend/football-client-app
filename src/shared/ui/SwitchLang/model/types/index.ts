@@ -9,11 +9,11 @@ export enum LagnShort {
 
 export enum LagnLong {
   EN = "English",
-  RU = "Russian",
-  UZ = "Uzbek",
-  OZ = "Озбек",
-  KK = "Қарақалпақ",
-  QQ = "Qaraqalpaq",
+  RU = "Русский",
+  UZ = "O’zbekcha",
+  OZ = "Өзбекча",
+  KK = "Қарақалпақша",
+  QQ = "Qaraqalpaqsha",
 }
 
 export interface ILagn {
