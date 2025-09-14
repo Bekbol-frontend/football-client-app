@@ -7,8 +7,8 @@ import { getLueagues } from "../model/services";
 import { queryKey } from "@/shared/lib/queryKey";
 import LeaguesSwiper from "./LeaguesSwiper/LeaguesSwiper";
 import LeaguesSkeleton from "./LeaguesSkeleton/LeaguesSkeleton";
-import { ErrorPage } from "@/shared/ui/ErrorPage";
 import { EmptyData } from "@/shared/ui/EmptyData";
+import { ErrorData } from "@/shared/ui/ErrorData";
 
 function Leagues() {
   const { data, isLoading, isError } = useQuery({
@@ -26,7 +26,7 @@ function Leagues() {
     );
   }
 
-  if (isError) return <ErrorPage />;
+  if (isError) return <ErrorData />;
 
   if (!data?.data || !data.data.length)
     return (
