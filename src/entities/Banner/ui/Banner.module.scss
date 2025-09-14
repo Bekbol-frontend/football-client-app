@@ -1,0 +1,36 @@
+.sectionBanner {
+  position: relative;
+
+  &::before {
+    content: "";
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    background-image: url("/bn/left.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 20px;
+    background-color: var(--color-wite);
+  }
+
+  &::after {
+    content: "";
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0px;
+    background-image: url("/bn/left.svg");
+    transform: rotate(180deg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 20px;
+    background-color: var(--color-wite);
+  }
+
+  .container {
+    padding-inline: var(--space-md);
+  }
+}
