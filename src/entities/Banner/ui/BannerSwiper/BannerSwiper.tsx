@@ -25,7 +25,7 @@ function BannerSwiper({ data }: IProps) {
           key={el.id}
           className={styles.swiperItem}
           style={{
-            backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, .7), rgba(0, 0, 0, .1)), url(${el.images[0]})`,
+            backgroundImage: `linear-gradient(to top, rgba(0, 0, 0, .6), rgba(0, 0, 0, .1)), url(${el.images[0]})`,
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
             backgroundPosition: "center",
