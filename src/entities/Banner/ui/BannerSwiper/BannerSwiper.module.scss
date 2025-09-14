@@ -28,9 +28,14 @@
 
     .infoBlock {
       position: absolute;
-      bottom: 20px;
-      left: 20px;
+      bottom: var(--space-sm);
+      left: var(--space-sm);
       padding: var(--space-xs);
+
+      @media (max-width: 768px) {
+        bottom: 5px;
+        left: 5px;
+      }
 
       .title,
       .subTitle {

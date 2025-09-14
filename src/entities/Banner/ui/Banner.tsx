@@ -8,18 +8,34 @@ import { queryKey } from "@/shared/lib/queryKey";
 import { useTranslation } from "react-i18next";
 import BannerSwiper from "./BannerSwiper/BannerSwiper";
 import { useResponsive } from "@/shared/lib/hooks/useResponsive";
+import BannerSkeleton from "./BannerSkeleton/BannerSkeleton";
 
 function Banner() {
   const { i18n } = useTranslation();
 
   const { isDesktop } = useResponsive();
 
-  const { data } = useQuery({
+  const { data, isLoading } = useQuery({
     queryFn: () => getNews(i18n.language),
     queryKey: [queryKey.news, i18n.language],
   });
 
-  if (!data?.data.data) return "NOT DATA!";
+  if (isLoading) {
+    return (
+      <Section
+        className={styles.sectionBanner}
+        style={{
+          paddingBlock: isDesktop ? "30px" : "15px",
+        }}
+      >
+        <Container className={styles.container}>
+          <BannerSkeleton />
+        </Container>
+      </Section>
+    );
+  }
+
+  if (!data?.data) return null;
 
   return (
     <Section
