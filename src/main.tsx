@@ -9,15 +9,18 @@ import "./app/styles/main.scss";
 
 // i18n
 import "./shared/config/i18n";
+import { ErrorBoundary } from "./app/Providers/ErrorBoundary";
 
 const queryClient = new QueryClient();
 
 createRoot(document.getElementById("root")!).render(
   <BrowserRouter>
-    <QueryClientProvider client={queryClient}>
-      <AppThemeProvider>
-        <App />
-      </AppThemeProvider>
-    </QueryClientProvider>
+    <ErrorBoundary>
+      <QueryClientProvider client={queryClient}>
+        <AppThemeProvider>
+          <App />
+        </AppThemeProvider>
+      </QueryClientProvider>
+    </ErrorBoundary>
   </BrowserRouter>
 );
