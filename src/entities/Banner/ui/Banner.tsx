@@ -10,6 +10,7 @@ import BannerSwiper from "./BannerSwiper/BannerSwiper";
 import { useResponsive } from "@/shared/lib/hooks/useResponsive";
 import BannerSkeleton from "./BannerSkeleton/BannerSkeleton";
 import { ErrorPage } from "@/shared/ui/ErrorPage";
+import { EmptyData } from "@/shared/ui/EmptyData";
 
 function Banner() {
   const { i18n } = useTranslation();
@@ -40,7 +41,7 @@ function Banner() {
     return <ErrorPage />;
   }
 
-  if (!data?.data) return null;
+  if (!data?.data || !data.data.data.length) return <EmptyData />;
 
   return (
     <Section

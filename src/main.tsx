@@ -11,6 +11,9 @@ import "./app/styles/main.scss";
 import "./shared/config/i18n";
 import { ErrorBoundary } from "./app/Providers/ErrorBoundary";
 
+// swiper-css
+import "swiper/swiper.css";
+
 const queryClient = new QueryClient();
 
 createRoot(document.getElementById("root")!).render(

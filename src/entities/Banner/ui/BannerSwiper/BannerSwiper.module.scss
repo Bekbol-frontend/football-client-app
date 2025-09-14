@@ -41,6 +41,18 @@
       .subTitle {
         color: var(--color-wite);
         text-shadow: 0px 0px 2px var(--color-black);
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .title {
+        -webkit-line-clamp: 1;
+      }
+
+      .subTitle {
+        -webkit-line-clamp: 2;
       }
     }
   }

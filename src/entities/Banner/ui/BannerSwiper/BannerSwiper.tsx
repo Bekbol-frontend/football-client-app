@@ -5,7 +5,6 @@ import type { Swiper as SwiperClass } from "swiper/types";
 import Typography from "@mui/material/Typography";
 
 import styles from "./BannerSwiper.module.scss";
-import "swiper/swiper.css";
 import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 import { useResponsive } from "@/shared/lib/hooks/useResponsive";
 
