@@ -36,14 +36,14 @@ function BannerSwiper({ data }: IProps) {
           </div> */}
           <div className={styles.infoBlock}>
             <Typography
-              variant={isDesktop ? "h3" : "h5"}
+              variant={isDesktop ? "h3" : "subtitle1"}
               gutterBottom={isDesktop}
               className={styles.title}
             >
               {el.title}
             </Typography>
             <Typography
-              variant={isDesktop ? "h5" : "body1"}
+              variant={isDesktop ? "h5" : "body2"}
               className={styles.subTitle}
             >
               {el.title}
