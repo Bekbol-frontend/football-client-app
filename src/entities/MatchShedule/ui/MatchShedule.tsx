@@ -60,6 +60,7 @@ function MatchShedule() {
         <Stack alignItems="center" justifyContent="center" sx={{ mt: 4 }}>
           <Pagination
             variant="outlined"
+            color="primary"
             page={page}
             count={data.data.meta.totalItems}
             onChange={handleChange}
