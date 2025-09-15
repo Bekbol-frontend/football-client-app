@@ -12,6 +12,7 @@ import { useResponsive } from "@/shared/lib/hooks/useResponsive";
 import { useTranslation } from "react-i18next";
 import MatchSheduleSkeleton from "./MatchSheduleSkeleton/MatchSheduleSkeleton";
 import { useSearchParams } from "react-router-dom";
+import MatchSheduleStatus from "./MatchSheduleStatus/MatchSheduleStatus";
 
 function MatchShedule() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -19,6 +20,7 @@ function MatchShedule() {
   const { i18n } = useTranslation();
 
   const page = Number(searchParams.get("page")) || 1;
+  const category = searchParams.get("category") || "Live";
 
   const handleChange = useCallback(
     (_: React.ChangeEvent<unknown>, value: number) => {
@@ -28,8 +30,9 @@ function MatchShedule() {
   );
 
   const { data, isLoading, isError } = useQuery({
-    queryFn: () => getMatchShedule(i18n.language, isDesktop ? 3 : 1, page),
-    queryKey: [queryKey.matchShedule, i18n.language, isDesktop, page],
+    queryFn: () =>
+      getMatchShedule(i18n.language, isDesktop ? 3 : 1, page, category),
+    queryKey: [queryKey.matchShedule, i18n.language, isDesktop, page, category],
   });
 
   if (isLoading) {
@@ -48,7 +51,15 @@ function MatchShedule() {
   return (
     <Section>
       <Container>
-        <TitleSection title="Match schedule" />
+        <Stack
+          alignItems="center"
+          justifyContent="space-between"
+          gap={1}
+          direction="row"
+        >
+          <TitleSection title="Match schedule" gutterBottom={false} />
+          <MatchSheduleStatus setSearchParams={setSearchParams} />
+        </Stack>
 
         <Grid container spacing={2} sx={{ mt: isDesktop ? 4 : 2 }}>
           {data.data.data.map((el) => (
@@ -62,7 +73,7 @@ function MatchShedule() {
             variant="outlined"
             color="primary"
             page={page}
-            count={data.data.meta.totalItems}
+            count={data.data.meta.totalPages}
             onChange={handleChange}
           />
         </Stack>

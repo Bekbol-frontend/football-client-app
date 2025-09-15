@@ -24,3 +24,15 @@ export interface IMatchShedule {
 
   status: string;
 }
+
+export enum MatchStatus {
+  Live = "Live",
+  Yesterday = "Yesterday",
+  Today = "Today",
+  Tomorrow = "Tomorrow",
+}
+
+export interface IMatchStatus {
+  value: MatchStatus;
+  name: string;
+}
