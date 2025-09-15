@@ -1,0 +1,118 @@
+@use "@/app/styles/mixin/mixin" as *;
+
+.sectionNews {
+  position: relative;
+
+  // &::before {
+  //   @include bannerMixin;
+  //   left: 0;
+  // }
+
+  // &::after {
+  //   @include bannerMixin;
+  //   right: 0px;
+  //   transform: rotate(180deg);
+  // }
+
+  .container {
+    // padding-inline: var(--space-md) !important;
+
+    .newsBlock {
+      padding: var(--space-md) 0 0;
+
+      @mixin text {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .newsMain {
+        position: relative;
+        height: 450px;
+        border-radius: var(--rounded-xs);
+        overflow: hidden;
+
+        @media (max-width: 768px) {
+          height: 200px;
+        }
+
+        .info {
+          position: absolute;
+          left: var(--space-sm);
+          bottom: var(--space-sm);
+
+          .mainNewsTitle {
+            @include text;
+            -webkit-line-clamp: 1;
+            color: var(--color-wite);
+          }
+
+          .mainNewsDesc {
+            @include text;
+            -webkit-line-clamp: 3;
+            color: var(--color-wite);
+          }
+        }
+      }
+
+      .leftNews {
+        .leftNewsImgWrapper {
+          width: 100%;
+          height: 350px;
+          display: flex;
+          border-radius: var(--rounded-xs);
+          overflow: hidden;
+          margin-bottom: var(--space-xs);
+
+          @media (max-width: 768px) {
+            height: 200px;
+          }
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+      }
+
+      .title {
+        @include text;
+        -webkit-line-clamp: 1;
+      }
+
+      .subTitle {
+        @include text;
+        -webkit-line-clamp: 2;
+      }
+
+      .right {
+        margin-bottom: var(--space-sm);
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        .rightNewsImgWrapper {
+          width: 100%;
+          height: 150px;
+          display: flex;
+          border-radius: var(--rounded-xs);
+          overflow: hidden;
+          margin-bottom: var(--space-xs);
+
+          @media (max-width: 768px) {
+            height: 200px;
+          }
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+      }
+    }
+  }
+}

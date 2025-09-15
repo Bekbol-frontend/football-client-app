@@ -1,5 +1,5 @@
 import API from "@/shared/api";
-import type { IMatchShedule } from "../types";
+import { MatchStatus, type IMatchShedule } from "../types";
 
 export const getMatchShedule = async (
   lang: string,
@@ -7,6 +7,19 @@ export const getMatchShedule = async (
   page: string | number,
   category: string
 ) => {
+  const params: Record<string, string | number> = {
+    limit,
+    page,
+  };
+
+  if (category === MatchStatus.Live) {
+    params["filter.category"] = category;
+  }
+
+  if (category !== MatchStatus.Live) {
+    params["filter.date"] = category;
+  }
+
   return await API.get<{
     data: IMatchShedule[];
     meta: { totalItems: number; totalPages: number };
@@ -14,10 +27,6 @@ export const getMatchShedule = async (
     headers: {
       "x-lang": lang,
     },
-    params: {
-      limit,
-      page,
-      "filter.category": category,
-    },
+    params,
   });
 };

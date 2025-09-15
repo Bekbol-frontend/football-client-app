@@ -1,33 +1,16 @@
+@use "@/app/styles/mixin/mixin" as *;
+
 .sectionBanner {
   position: relative;
-
   &::before {
-    content: "";
-
-    position: absolute;
-    top: 0;
-    bottom: 0;
+    @include bannerMixin;
     left: 0;
-    background-image: url("/bn/left.svg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 20px;
-    background-color: var(--color-wite);
   }
 
   &::after {
-    content: "";
-
-    position: absolute;
-    top: 0;
-    bottom: 0;
+    @include bannerMixin;
     right: 0px;
-    background-image: url("/bn/left.svg");
     transform: rotate(180deg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 20px;
-    background-color: var(--color-wite);
   }
 
   .container {

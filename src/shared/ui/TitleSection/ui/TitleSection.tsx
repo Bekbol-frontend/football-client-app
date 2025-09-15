@@ -5,18 +5,13 @@ import { useTranslation } from "react-i18next";
 
 interface IProps {
   title: string;
-  gutterBottom?: boolean;
 }
 
-function TitleSection({ title, gutterBottom = true }: IProps) {
+function TitleSection({ title }: IProps) {
   const { t } = useTranslation();
   const { isDesktop } = useResponsive();
 
-  return (
-    <Typography variant={isDesktop ? "h4" : "h6"} gutterBottom={gutterBottom}>
-      {t(title)}
-    </Typography>
-  );
+  return <Typography variant={isDesktop ? "h4" : "h6"}>{t(title)}</Typography>;
 }
 
 export default memo(TitleSection);

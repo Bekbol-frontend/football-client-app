@@ -1,0 +1,16 @@
+@mixin bannerMixin {
+  content: "";
+  top: 0;
+  bottom: 0;
+  position: absolute;
+  width: 20px;
+  background-color: var(--color-wite);
+  background-image: url("/bn/left.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  @media (max-width: 768px) {
+    width: 15px;
+  }
+}
