@@ -1,7 +1,7 @@
-import { memo } from "react";
+import { memo, useCallback } from "react";
 import { Section } from "@/shared/ui/Section";
 import { TitleSection } from "@/shared/ui/TitleSection";
-import { Container, Grid } from "@mui/material";
+import { Container, Grid, Pagination, Stack } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import { getMatchShedule } from "../model/services";
 import { queryKey } from "@/shared/lib/queryKey";
@@ -11,14 +11,25 @@ import MatchSheduleCard from "./MatchSheduleCard/MatchSheduleCard";
 import { useResponsive } from "@/shared/lib/hooks/useResponsive";
 import { useTranslation } from "react-i18next";
 import MatchSheduleSkeleton from "./MatchSheduleSkeleton/MatchSheduleSkeleton";
+import { useSearchParams } from "react-router-dom";
 
 function MatchShedule() {
+  const [searchParams, setSearchParams] = useSearchParams();
   const { isDesktop } = useResponsive();
   const { i18n } = useTranslation();
 
+  const page = Number(searchParams.get("page")) || 1;
+
+  const handleChange = useCallback(
+    (_: React.ChangeEvent<unknown>, value: number) => {
+      setSearchParams({ page: String(value) });
+    },
+    []
+  );
+
   const { data, isLoading, isError } = useQuery({
-    queryFn: () => getMatchShedule(i18n.language, isDesktop ? 3 : 1),
-    queryKey: [queryKey.matchShedule, i18n.language, isDesktop],
+    queryFn: () => getMatchShedule(i18n.language, isDesktop ? 3 : 1, page),
+    queryKey: [queryKey.matchShedule, i18n.language, isDesktop, page],
   });
 
   if (isLoading) {
@@ -32,7 +43,6 @@ function MatchShedule() {
   }
 
   if (isError) return <ErrorData />;
-
   if (!data?.data || !data.data.data.length) return <EmptyData />;
 
   return (
@@ -47,6 +57,14 @@ function MatchShedule() {
             </Grid>
           ))}
         </Grid>
+        <Stack alignItems="center" justifyContent="center" sx={{ mt: 4 }}>
+          <Pagination
+            variant="outlined"
+            page={page}
+            count={data.data.meta.totalItems}
+            onChange={handleChange}
+          />
+        </Stack>
       </Container>
     </Section>
   );
