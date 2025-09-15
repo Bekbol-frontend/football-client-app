@@ -7,12 +7,14 @@ import { baseURL } from "@/shared/api";
 import styles from "./MatchSheduleCard.module.scss";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import { useResponsive } from "@/shared/lib/hooks/useResponsive";
 
 interface IProps {
   data: IMatchShedule;
 }
 
 function MatchSheduleCard({ data }: IProps) {
+  const { isDesktop } = useResponsive();
   const { club, clubLeague, opponentClub, opponentLeague } = data;
 
   const date = new Date(data.matchDate);
@@ -36,10 +38,16 @@ function MatchSheduleCard({ data }: IProps) {
               <Stack className={styles.imgWrapper}>
                 <img src={`${baseURL}${club.logo}`} alt={club.name} />
               </Stack>
-              <Typography variant="h6" className={styles.name}>
+              <Typography
+                variant={isDesktop ? "h6" : "body1"}
+                className={styles.name}
+              >
                 {club.name}
               </Typography>
-              <Typography variant="h6" className={styles.title}>
+              <Typography
+                variant={isDesktop ? "h6" : "body1"}
+                className={styles.title}
+              >
                 {clubLeague.title}
               </Typography>
             </Stack>
@@ -52,10 +60,16 @@ function MatchSheduleCard({ data }: IProps) {
               <Stack className={styles.imgWrapper}>
                 <img src={`${baseURL}${opponentClub.logo}`} alt={club.name} />
               </Stack>
-              <Typography variant="h6" className={styles.name}>
+              <Typography
+                variant={isDesktop ? "h6" : "body1"}
+                className={styles.name}
+              >
                 {opponentClub.name}
               </Typography>
-              <Typography variant="h6" className={styles.title}>
+              <Typography
+                variant={isDesktop ? "h6" : "body1"}
+                className={styles.title}
+              >
                 {opponentLeague.title}
               </Typography>
             </Stack>
@@ -72,11 +86,15 @@ function MatchSheduleCard({ data }: IProps) {
         >
           <Stack direction="row" alignItems="center" gap={1}>
             <AccessTimeIcon />
-            <Typography variant="subtitle1">{hour}</Typography>
+            <Typography variant={isDesktop ? "subtitle1" : "body1"}>
+              {hour}
+            </Typography>
           </Stack>
           <Stack direction="row" alignItems="center" gap={1}>
             <CalendarMonthIcon />
-            <Typography variant="subtitle1">{dateCalendar}</Typography>
+            <Typography variant={isDesktop ? "subtitle1" : "body1"}>
+              {dateCalendar}
+            </Typography>
           </Stack>
         </Stack>
       </CardActions>
