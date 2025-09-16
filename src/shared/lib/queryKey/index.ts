@@ -3,4 +3,7 @@ export const queryKey = {
   leagues: "leagues",
   matchShedule: "matchShedule",
   partners: "partners",
+  about: "about",
+  personnel: "personnel",
+  leaguesPoint: "leaguesPoint",
 };
