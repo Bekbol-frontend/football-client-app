@@ -1,0 +1,7 @@
+.sectionPartners {
+  padding-top: var(--space-sm);
+
+  @media (max-width: 768px) {
+    padding-top: var(--space-xs);
+  }
+}

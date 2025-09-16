@@ -7,6 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getNews } from "../model/services";
 import { useTranslation } from "react-i18next";
 import { queryKey } from "@/shared/lib/queryKey";
+import { Partners } from "@/entities/Partners";
 
 function HomePage() {
   const { i18n } = useTranslation();
@@ -22,6 +23,7 @@ function HomePage() {
       <Leagues />
       <MatchShedule />
       <News data={data?.data.data} isError={isError} isLoading={isLoading} />
+      <Partners />
     </>
   );
 }
