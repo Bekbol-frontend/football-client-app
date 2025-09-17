@@ -1,5 +1,5 @@
 import { memo, useMemo, useState } from "react";
-import type { INews } from "../../model/types";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import type { Swiper as SwiperClass } from "swiper/types";
 import Typography from "@mui/material/Typography";
@@ -7,6 +7,7 @@ import Typography from "@mui/material/Typography";
 import styles from "./BannerSwiper.module.scss";
 import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 import { useResponsive } from "@/shared/lib/hooks/useResponsive";
+import type { INews } from "@/pages/HomePage";
 
 interface IProps {
   data: INews[];
