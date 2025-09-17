@@ -10,3 +10,9 @@ export interface ILeaguePoint {
   total_points: number;
   wins: number;
 }
+
+export enum LeagueStatus {
+  Yesterday = "Yesterday",
+  Today = "Today",
+  Tomorrow = "Tomorrow",
+}

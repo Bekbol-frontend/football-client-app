@@ -6,4 +6,6 @@ export const queryKey = {
   about: "about",
   personnel: "personnel",
   leaguesPoint: "leaguesPoint",
+  leaguesPointSelect: "leaguesPointSelect",
+  leaguesPointSelectSubLeague: "leaguesPointSelectSubLeague",
 };
