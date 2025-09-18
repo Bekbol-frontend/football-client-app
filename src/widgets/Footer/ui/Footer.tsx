@@ -63,13 +63,25 @@ function Footer() {
                 </Typography>
               </Stack>
               <Stack direction="row" gap={1}>
-                <a href="#" className={styles.socialLink}>
+                <a
+                  href="https://t.me/kkfa_uz"
+                  target="_blank"
+                  className={styles.socialLink}
+                >
                   <TelegramIcon sx={{ color: "#fff" }} fontSize="small" />
                 </a>
-                <a href="#" className={styles.socialLink}>
+                <a
+                  href="https://www.instagram.com/kkfauzb?igsh=ZWh2ZWw1dnZpMG02"
+                  target="_blank"
+                  className={styles.socialLink}
+                >
                   <InstagramIcon sx={{ color: "#fff" }} fontSize="small" />
                 </a>
-                <a href="#" className={styles.socialLink}>
+                <a
+                  href="https://www.youtube.com/@kkfa_uz"
+                  target="_blank"
+                  className={styles.socialLink}
+                >
                   <YouTubeIcon sx={{ color: "#fff" }} fontSize="small" />
                 </a>
               </Stack>
