@@ -8,6 +8,7 @@ import styles from "./BannerSwiper.module.scss";
 import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 import { useResponsive } from "@/shared/lib/hooks/useResponsive";
 import type { INews } from "@/pages/HomePage";
+import { baseURL } from "@/shared/api";
 
 interface IProps {
   data: INews[];
@@ -25,7 +26,7 @@ function BannerSwiper({ data }: IProps) {
           key={el.id}
           className={styles.swiperItem}
           style={{
-            backgroundImage: `linear-gradient(to top, rgba(0, 0, 0, .6), rgba(0, 0, 0, .1)), url(${el.images[0]})`,
+            backgroundImage: `linear-gradient(to top, rgba(0, 0, 0, .6), rgba(0, 0, 0, .1)), url(${baseURL}${el.images[0]})`,
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
             backgroundPosition: "center",

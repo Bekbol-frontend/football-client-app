@@ -14,6 +14,7 @@ import {
 import styles from "./News.module.scss";
 import { EmptyData } from "@/shared/ui/EmptyData";
 import { useResponsive } from "@/shared/lib/hooks/useResponsive";
+import { baseURL } from "@/shared/api";
 
 interface IProps {
   data?: INews[];
@@ -55,197 +56,210 @@ function News(props: IProps) {
           {data ? (
             <>
               <Grid container spacing={2}>
-                <Grid size={12}>
-                  {isLoading ? (
-                    <Skeleton
-                      variant="rounded"
-                      width="100%"
-                      height={isDesktop ? 450 : 250}
-                    />
-                  ) : (
-                    <div
-                      className={styles.newsMain}
-                      style={{
-                        backgroundImage: `linear-gradient(to top, rgba(0, 0, 0, .6), rgba(0, 0, 0, .1)), url(${data[0].images[0]})`,
-                        backgroundRepeat: "no-repeat",
-                        backgroundSize: "cover",
-                        backgroundPosition: "center",
-                      }}
-                    >
-                      <div className={styles.info}>
+                {data[0] && (
+                  <Grid size={12}>
+                    {isLoading ? (
+                      <Skeleton
+                        variant="rounded"
+                        width="100%"
+                        height={isDesktop ? 450 : 250}
+                      />
+                    ) : (
+                      <div
+                        className={styles.newsMain}
+                        style={{
+                          backgroundImage: `linear-gradient(to top, rgba(0, 0, 0, .6), rgba(0, 0, 0, .1)), url(${baseURL}${data[0].images[0]})`,
+                          backgroundRepeat: "no-repeat",
+                          backgroundSize: "cover",
+                          backgroundPosition: "center",
+                        }}
+                      >
+                        <div className={styles.info}>
+                          <Typography
+                            variant={isDesktop ? "h3" : "h6"}
+                            gutterBottom
+                            className={styles.mainNewsTitle}
+                          >
+                            {data[0].title}
+                          </Typography>
+                          <Typography
+                            variant={isDesktop ? "body1" : "body2"}
+                            className={styles.mainNewsDesc}
+                          >
+                            {data[0].description}
+                          </Typography>
+                        </div>
+                      </div>
+                    )}
+                  </Grid>
+                )}
+
+                {data[1] && (
+                  <Grid size={isDesktop ? 8 : 12}>
+                    <div className={styles.leftNews}>
+                      <div className={styles.leftNewsImgWrapper}>
+                        {isLoading ? (
+                          <Skeleton
+                            variant="rectangular"
+                            width="100%"
+                            height={isDesktop ? 350 : 200}
+                            sx={{ mb: 1 }}
+                          />
+                        ) : (
+                          <img
+                            src={`${baseURL}${data[1].images[0]}`}
+                            alt={data[1].title}
+                          />
+                        )}
+                      </div>
+                      {isLoading ? (
+                        <Skeleton
+                          variant="rectangular"
+                          width={210}
+                          height={isDesktop ? 25 : 15}
+                          sx={{ mb: 0.5 }}
+                        />
+                      ) : (
                         <Typography
-                          variant={isDesktop ? "h3" : "h6"}
-                          gutterBottom
-                          className={styles.mainNewsTitle}
+                          variant={isDesktop ? "h6" : "subtitle1"}
+                          sx={{ mb: 0.5 }}
+                          className={styles.title}
                         >
-                          {data[0].title}
+                          {data[1].title}
                         </Typography>
+                      )}
+                      {isLoading ? (
+                        <Stack gap={0.5}>
+                          <Skeleton
+                            variant="rectangular"
+                            width="100%"
+                            height={isDesktop ? 20 : 15}
+                          />
+                          <Skeleton
+                            variant="rectangular"
+                            width="75%"
+                            height={isDesktop ? 20 : 15}
+                          />
+                        </Stack>
+                      ) : (
                         <Typography
                           variant={isDesktop ? "body1" : "body2"}
-                          className={styles.mainNewsDesc}
+                          className={styles.subTitle}
                         >
-                          {data[0].description}
+                          {data[1].description}
                         </Typography>
+                      )}
+                    </div>
+                  </Grid>
+                )}
+
+                <Grid size={isDesktop ? 4 : 12}>
+                  {data[2] && (
+                    <div className={styles.right}>
+                      <div className={styles.rightNewsImgWrapper}>
+                        {isLoading ? (
+                          <Skeleton
+                            variant="rectangular"
+                            width="100%"
+                            height={isDesktop ? 150 : 200}
+                            sx={{ mb: 1 }}
+                          />
+                        ) : (
+                          <img src={`${baseURL}${data[2].images[0]}`} alt={data[0].title} />
+                        )}
                       </div>
+                      {isLoading ? (
+                        <Skeleton
+                          variant="rectangular"
+                          width={210}
+                          height={isDesktop ? 25 : 15}
+                          sx={{ mb: 0.5 }}
+                        />
+                      ) : (
+                        <Typography
+                          variant={isDesktop ? "h6" : "subtitle1"}
+                          sx={{ mb: 0.5 }}
+                          className={styles.title}
+                        >
+                          {data[2].title}
+                        </Typography>
+                      )}
+                      {isLoading ? (
+                        <Stack gap={0.5}>
+                          <Skeleton
+                            variant="rectangular"
+                            width="100%"
+                            height={isDesktop ? 20 : 15}
+                          />
+                          <Skeleton
+                            variant="rectangular"
+                            width="75%"
+                            height={isDesktop ? 20 : 15}
+                          />
+                        </Stack>
+                      ) : (
+                        <Typography
+                          variant={isDesktop ? "body1" : "body2"}
+                          className={styles.subTitle}
+                        >
+                          {data[2].description}
+                        </Typography>
+                      )}
                     </div>
                   )}
-                </Grid>
-                <Grid size={isDesktop ? 8 : 12}>
-                  <div className={styles.leftNews}>
-                    <div className={styles.leftNewsImgWrapper}>
+                  {data[3] && (
+                    <div className={styles.right}>
+                      <div className={styles.rightNewsImgWrapper}>
+                        {isLoading ? (
+                          <Skeleton
+                            variant="rectangular"
+                            width="100%"
+                            height={isDesktop ? 150 : 200}
+                            sx={{ mb: 1 }}
+                          />
+                        ) : (
+                          <img src={`${baseURL}${data[3].images[0]}`} alt={data[0].title} />
+                        )}
+                      </div>
                       {isLoading ? (
                         <Skeleton
                           variant="rectangular"
-                          width="100%"
-                          height={isDesktop ? 350 : 200}
-                          sx={{ mb: 1 }}
+                          width={210}
+                          height={isDesktop ? 25 : 15}
+                          sx={{ mb: 0.5 }}
                         />
                       ) : (
-                        <img src={data[1].images[0]} alt={data[1].title} />
+                        <Typography
+                          variant={isDesktop ? "h6" : "subtitle1"}
+                          sx={{ mb: 0.5 }}
+                          className={styles.title}
+                        >
+                          {data[3].title}
+                        </Typography>
                       )}
-                    </div>
-                    {isLoading ? (
-                      <Skeleton
-                        variant="rectangular"
-                        width={210}
-                        height={isDesktop ? 25 : 15}
-                        sx={{ mb: 0.5 }}
-                      />
-                    ) : (
-                      <Typography
-                        variant={isDesktop ? "h6" : "subtitle1"}
-                        sx={{ mb: 0.5 }}
-                        className={styles.title}
-                      >
-                        {data[1].title}
-                      </Typography>
-                    )}
-                    {isLoading ? (
-                      <Stack gap={0.5}>
-                        <Skeleton
-                          variant="rectangular"
-                          width="100%"
-                          height={isDesktop ? 20 : 15}
-                        />
-                        <Skeleton
-                          variant="rectangular"
-                          width="75%"
-                          height={isDesktop ? 20 : 15}
-                        />
-                      </Stack>
-                    ) : (
-                      <Typography
-                        variant={isDesktop ? "body1" : "body2"}
-                        className={styles.subTitle}
-                      >
-                        {data[1].description}
-                      </Typography>
-                    )}
-                  </div>
-                </Grid>
-                <Grid size={isDesktop ? 4 : 12}>
-                  <div className={styles.right}>
-                    <div className={styles.rightNewsImgWrapper}>
                       {isLoading ? (
-                        <Skeleton
-                          variant="rectangular"
-                          width="100%"
-                          height={isDesktop ? 150 : 200}
-                          sx={{ mb: 1 }}
-                        />
+                        <Stack gap={0.5}>
+                          <Skeleton
+                            variant="rectangular"
+                            width="100%"
+                            height={isDesktop ? 20 : 15}
+                          />
+                          <Skeleton
+                            variant="rectangular"
+                            width="75%"
+                            height={isDesktop ? 20 : 15}
+                          />
+                        </Stack>
                       ) : (
-                        <img src={data[0].images[0]} alt={data[0].title} />
+                        <Typography
+                          variant={isDesktop ? "body1" : "body2"}
+                          className={styles.subTitle}
+                        >
+                          {data[3].description}
+                        </Typography>
                       )}
                     </div>
-                    {isLoading ? (
-                      <Skeleton
-                        variant="rectangular"
-                        width={210}
-                        height={isDesktop ? 25 : 15}
-                        sx={{ mb: 0.5 }}
-                      />
-                    ) : (
-                      <Typography
-                        variant={isDesktop ? "h6" : "subtitle1"}
-                        sx={{ mb: 0.5 }}
-                        className={styles.title}
-                      >
-                        {data[0].title}
-                      </Typography>
-                    )}
-                    {isLoading ? (
-                      <Stack gap={0.5}>
-                        <Skeleton
-                          variant="rectangular"
-                          width="100%"
-                          height={isDesktop ? 20 : 15}
-                        />
-                        <Skeleton
-                          variant="rectangular"
-                          width="75%"
-                          height={isDesktop ? 20 : 15}
-                        />
-                      </Stack>
-                    ) : (
-                      <Typography
-                        variant={isDesktop ? "body1" : "body2"}
-                        className={styles.subTitle}
-                      >
-                        {data[1].description}
-                      </Typography>
-                    )}
-                  </div>
-                  <div className={styles.right}>
-                    <div className={styles.rightNewsImgWrapper}>
-                      {isLoading ? (
-                        <Skeleton
-                          variant="rectangular"
-                          width="100%"
-                          height={isDesktop ? 150 : 200}
-                          sx={{ mb: 1 }}
-                        />
-                      ) : (
-                        <img src={data[0].images[0]} alt={data[0].title} />
-                      )}
-                    </div>
-                    {isLoading ? (
-                      <Skeleton
-                        variant="rectangular"
-                        width={210}
-                        height={isDesktop ? 25 : 15}
-                        sx={{ mb: 0.5 }}
-                      />
-                    ) : (
-                      <Typography
-                        variant={isDesktop ? "h6" : "subtitle1"}
-                        sx={{ mb: 0.5 }}
-                        className={styles.title}
-                      >
-                        {data[0].title}
-                      </Typography>
-                    )}
-                    {isLoading ? (
-                      <Stack gap={0.5}>
-                        <Skeleton
-                          variant="rectangular"
-                          width="100%"
-                          height={isDesktop ? 20 : 15}
-                        />
-                        <Skeleton
-                          variant="rectangular"
-                          width="75%"
-                          height={isDesktop ? 20 : 15}
-                        />
-                      </Stack>
-                    ) : (
-                      <Typography
-                        variant={isDesktop ? "body1" : "body2"}
-                        className={styles.subTitle}
-                      >
-                        {data[1].description}
-                      </Typography>
-                    )}
-                  </div>
+                  )}
                 </Grid>
               </Grid>
             </>
