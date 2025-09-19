@@ -15,6 +15,7 @@ import styles from "./Partners.module.scss";
 function Partners() {
   const { i18n } = useTranslation();
   const { isDesktop } = useResponsive();
+  const {t} = useTranslation()
 
   const { data, isLoading, isError } = useQuery({
     queryFn: () => getParteners(i18n.language),
@@ -34,7 +35,7 @@ function Partners() {
             height={isDesktop ? 36 : 30}
           />
         ) : (
-          <TitleSection title="Partners" />
+          <TitleSection title={t("Partners")} />
         )}
         {!data?.data || !data.data.length ? (
           <EmptyData />

@@ -15,6 +15,7 @@ import styles from "./News.module.scss";
 import { EmptyData } from "@/shared/ui/EmptyData";
 import { useResponsive } from "@/shared/lib/hooks/useResponsive";
 import { baseURL } from "@/shared/api";
+import { useTranslation } from "react-i18next";
 
 interface IProps {
   data?: INews[];
@@ -25,6 +26,7 @@ interface IProps {
 function News(props: IProps) {
   const { data, isError, isLoading } = props;
   const { isDesktop } = useResponsive();
+  const { t } = useTranslation();
 
   if (isError) return <ErrorData />;
 
@@ -44,12 +46,12 @@ function News(props: IProps) {
               height={isDesktop ? 36 : 30}
             />
           ) : (
-            <TitleSection title="News" />
+            <TitleSection title={t("News")} />
           )}
           {isLoading ? (
             <Skeleton variant="rounded" width={86} height={36} />
           ) : (
-            <Button variant="contained">See all</Button>
+            <Button variant="contained">{t("See all")}</Button>
           )}
         </Stack>
         <div className={styles.newsBlock}>
@@ -165,7 +167,10 @@ function News(props: IProps) {
                             sx={{ mb: 1 }}
                           />
                         ) : (
-                          <img src={`${baseURL}${data[2].images[0]}`} alt={data[0].title} />
+                          <img
+                            src={`${baseURL}${data[2].images[0]}`}
+                            alt={data[0].title}
+                          />
                         )}
                       </div>
                       {isLoading ? (
@@ -218,7 +223,10 @@ function News(props: IProps) {
                             sx={{ mb: 1 }}
                           />
                         ) : (
-                          <img src={`${baseURL}${data[3].images[0]}`} alt={data[0].title} />
+                          <img
+                            src={`${baseURL}${data[3].images[0]}`}
+                            alt={data[0].title}
+                          />
                         )}
                       </div>
                       {isLoading ? (

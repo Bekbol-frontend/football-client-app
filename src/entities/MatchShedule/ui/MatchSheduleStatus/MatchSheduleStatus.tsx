@@ -5,6 +5,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { matchStatus } from "../../model/matchStatus";
 import { type SetURLSearchParams } from "react-router-dom";
 import { MatchStatus } from "../../model/types";
+import { useTranslation } from "react-i18next";
 
 const getLocalStorageStatus = (): MatchStatus => {
   const status = localStorage.getItem("status");
@@ -20,6 +21,8 @@ function MatchSheduleStatus({ setSearchParams }: IProps) {
   const [selectedCategory, setSelectedCategory] = useState<MatchStatus>(() =>
     getLocalStorageStatus()
   );
+  const {t} = useTranslation()
+
   const open = Boolean(anchorEl);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -71,7 +74,7 @@ function MatchSheduleStatus({ setSearchParams }: IProps) {
         onClick={handleClick}
         variant="contained"
       >
-        category
+        {t("Category")}
       </Button>
       <Menu
         id="basic-menu"
@@ -90,7 +93,7 @@ function MatchSheduleStatus({ setSearchParams }: IProps) {
             key={el.value}
             selected={selectedCategory === el.value}
           >
-            {el.name}
+            {t(el.name)}
           </MenuItem>
         ))}
       </Menu>

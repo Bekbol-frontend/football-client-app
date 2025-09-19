@@ -180,14 +180,14 @@ function LeaguePage() {
                 size={isDesktop ? "medium" : "small"}
               >
                 <InputLabel id="demo-simple-select-label-2">
-                  {t("SubLeague")}
+                  {t("Subleague")}
                 </InputLabel>
                 <Select
                   disabled={!leagueId}
                   labelId="demo-simple-select-label-2"
                   id="demo-simple-select-2"
                   value={subLeagueId}
-                  label={t("SubLeague")}
+                  label={t("Subleague")}
                   onChange={handleChangeSubLeague}
                   MenuProps={MenuProps}
                 >

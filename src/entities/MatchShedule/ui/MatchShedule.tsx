@@ -17,7 +17,7 @@ import MatchSheduleStatus from "./MatchSheduleStatus/MatchSheduleStatus";
 function MatchShedule() {
   const [searchParams, setSearchParams] = useSearchParams();
   const { isDesktop } = useResponsive();
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
 
   const page = Number(searchParams.get("page")) || 1;
   const category = searchParams.get("category") || "Live";
@@ -56,7 +56,7 @@ function MatchShedule() {
           gap={1}
           direction="row"
         >
-          <TitleSection title="Match schedule" />
+          <TitleSection title={t("Match schedule")} />
           <MatchSheduleStatus setSearchParams={setSearchParams} />
         </Stack>
 
